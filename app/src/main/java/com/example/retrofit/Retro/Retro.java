@@ -3,7 +3,21 @@ package com.example.retrofit.Retro;
 import com.google.gson.annotations.SerializedName;
 
 public class Retro {
-    @SerializedName("userId")
+    //step1: define all the data members contained in the server and set up there getters and setters
+    /*In my case the json structure must be similat to this :
+        [
+            {
+                "userId": 1,
+                "id": 2,
+                "title": "singh",
+                "body": "hey there"
+             },
+             {
+             .
+             .
+             }
+    */
+    @SerializedName("userId")//the name in quotes must be same as the key stored at the server
     private String UserId;
     @SerializedName("id")
     private String Id;
@@ -18,7 +32,7 @@ public class Retro {
         Title = title;
         Body = body;
     }
-
+    //Setting up getters and setters
     public String getUserId() {
         return UserId;
     }

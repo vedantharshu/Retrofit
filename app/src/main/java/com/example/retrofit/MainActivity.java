@@ -1,5 +1,6 @@
 package com.example.retrofit;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,21 +28,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
+        //Object of Interface GetData, RetrofitInstance is the class we created which had the method getRetrofitInstance()
         GetData data = RetrofitInstance.getRetrofitInstance().create(GetData.class);
 
         Call<List<Retro>> serve = data.getPosts();
         serve.enqueue(new Callback<List<Retro>>() {
             @Override
-            public void onResponse(Call<List<Retro>> call, Response<List<Retro>> response) {
+            public void onResponse(@NonNull Call<List<Retro>> call, @NonNull Response<List<Retro>> response) {
 
                 createList(response.body());
-                Toast.makeText(getApplicationContext(),response.body().get(1).getId(),Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<List<Retro>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Retro>> call, @NonNull Throwable t) {
                 Toast.makeText(getApplicationContext(),"Failed",Toast.LENGTH_SHORT).show();
             }
         });
